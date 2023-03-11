@@ -3,11 +3,43 @@ This small project aims to show how to spot anomalies in a dataset using the Ben
 
 ------
 
-Steps to use the code with your own dataset:
+#### System Requirements
 
-1) Select the right column with pandas library:
-2) Use the Benford class to analyze it and plot the histogram
-3) Calculate the correlation
+- Python 3.10
+- Numpy 1.23.5
+- Pandas 1.5.2
+
+### **Steps to use the code with your own dataset**
+
+1) Select the dataset, the column of interest and the title you want to set in the plot
+
+   ```python
+   benford.analyze('datasets\\gaia-dr2-rave-35.csv', 'r_distance', 'Distance to Earth of 250k stars')
+   ```
+
+2) Calculate the correlation
+
+   ```python
+   benford.calculateCorrelation()
+   ```
+
+3) Implement your own manipulation method
+
+   ```python
+   vect = [1, 2, 3, 4, 4, 5, 5, 5, 5, 6, 6, 6, 7, 7, 7, 9, 8, 9, 9]
+   self.data_vector = [random.choice(vect) * 1000 if random.randint(0, 10) % 2 == 0 else x for x in
+                       self.data_vector if not math.isnan(x) and x > 0]
+   ```
+
+4) Call the maipulation method and re-analyze the vector
+
+   ```python
+   benford.manipulateV2()
+   benford.reanalyze()
+   print(benford.calculateCorrelation())
+   ```
+
+----
 
 Note that using Benford's Law for spot data anomalies is only suitable in particular conditions:
 
@@ -18,16 +50,6 @@ Note that using Benford's Law for spot data anomalies is only suitable in partic
 
 
 #### **More details in the Medium article.**
-
-
-
-### System Requirements
-
-- Python 3.10
-- Numpy 1.23.5
-- Pandas 1.5.2
-
-
 
 ------
 
